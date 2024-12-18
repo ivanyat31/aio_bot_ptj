@@ -56,3 +56,9 @@ async def on_startup(dp):
 
 if __name__ == '__main__':
     executor.start_polling(dp, on_startup=on_startup, skip_updates=False)
+
+from aiogram.utils.chat_member import ADMINS
+
+async def is_admin(message: Message, user_id : int) -> bool:
+    member = await message.bot.get_chat_member(message.chat.id, user_id)
+    return isinstance(member, ADMINS)
